@@ -1,0 +1,57 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Adam
+ * Date: 15. 12. 2016
+ * Time: 23:16
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Superpower
+ * @package AppBundle\Entity
+ * @ORM\Entity()
+ * @ORM\Table(name="z")
+ */
+class Superpower
+{
+    /**
+     * @var int
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $descrription;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Astronaut", mappedBy="superpower")
+     */
+    private $astronauts;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean")
+     */
+    private $deleted;
+}

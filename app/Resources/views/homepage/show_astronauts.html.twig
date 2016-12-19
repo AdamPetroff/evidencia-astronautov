@@ -1,0 +1,39 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Astronauti{% endblock %}
+
+{% block body %}
+    <h1>Astronauti</h1>
+
+    <a class="btn" href="{{ path('manage_astronaut') }}">Pridať Astronauta</a>
+
+    <table class="table table-responsive">
+        <tr>
+            <td>ID</td>
+            <td>Priezvisko</td>
+            <td>Meno</td>
+            <td>Dátum narodenia</td>
+            <td>Superschopnosť</td>
+            <td>V službe</td>
+            <td>Akcia</td>
+        </tr>
+        {% for astronaut in astronauts %}
+            <tr>
+                <td>{{ astronaut.id }}</td>
+                <td>{{ astronaut.lastName|capitalize }}</td>
+                <td>{{ astronaut.firstName|capitalize }}</td>
+                <td>{{ astronaut.dateOfBirth|date('d. m. Y') }}</td>
+                <td>{{ astronaut.superpower.name }}</td>
+                <td>{{ astronaut.inService ? 'Áno' : 'Nie' }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('manage_astronaut', {'astronaut_id': astronaut.id }) }}">Upraviť</a>
+                    <form action="{{ path('delete_astronaut') }}" method="post">
+                        <input type="hidden" name="id" value="{{ astronaut.id }}">
+                        <input class="btn btn-danger" type="submit" name="submit" value="Vymazať">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Superschopnosti{% endblock %}
+
+{% block body %}
+    <h1>Superschopnosti</h1>
+
+    <a class="btn" href="{{ path('manage_superpower') }}">Pridať superschopnosť</a>
+
+    <table class="table-responsive table">
+        <tr>
+            <th>ID</th>
+            <th>Názov</th>
+            <th>Popis</th>
+            <th>Vytvorené</th>
+            <th>Akcia</th>
+        </tr>
+        {% for superpower in superpowers %}
+            <tr>
+                <td>{{ superpower.id }}</td>
+                <td>{{ superpower.name }}</td>
+                <td>{{ superpower.description }}</td>
+                <td>{{ superpower.createdAt|date('d. m. Y H:i') }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('manage_superpower', {'superpower_id': superpower.id }) }}">Upraviť</a>
+                    <form action="{{ path('delete_superpower') }}" method="post">
+                        <input type="hidden" name="id" value="{{ superpower.id }}">
+                        <input class="btn btn-danger" type="submit" name="submit" value="Vymazať">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

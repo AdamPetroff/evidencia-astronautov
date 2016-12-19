@@ -1,0 +1,68 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Adam
+ * Date: 15. 12. 2016
+ * Time: 23:00
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Astronaut
+ * @package AppBundle\Entity
+ * @ORM\Entity()
+ * @ORM\Table(name="astronauts")
+ */
+class Astronaut
+{
+    /**
+     * @var int
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $first_name;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $last_name;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $date_of_birth;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Superpower", inversedBy="Astronauts")
+     */
+    private $superpower;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean")
+     */
+    private $deleted;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean")
+     */
+    private $in_service;
+}
