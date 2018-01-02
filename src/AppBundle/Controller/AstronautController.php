@@ -27,7 +27,7 @@ class AstronautController extends Controller
      * @Route("/astronaut/{astronaut_id}", name="manage_astronaut")
      * @return Response
      */
-    public function editAstronñautAction(Request $request, $astronaut_id = null)
+    public function editAstronautAction(Request $request, $astronaut_id = null)
     {
         $repository = $this->get('doctrine')->getRepository(Astronaut::class);
         
